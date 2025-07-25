@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+import os
 import requests  # For sending the image to an API (if needed)
 
 st.set_page_config(page_title="Label Decoder", layout="centered")
@@ -24,8 +25,14 @@ if uploaded_file:
 
     # Add the "Analyze This" button
     if st.button("Analyze This"):
+        
         # Save the uploaded image locally
+        
+        # Create uploads directory if it doesn't exist
+        os.makedirs("uploads", exist_ok=True)
+        
         image_path = f"uploads/{uploaded_file.name}"
+        
         with open(image_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         
