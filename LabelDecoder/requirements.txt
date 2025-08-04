@@ -1,0 +1,13 @@
+# Core dependencies for Label Decoder App
+streamlit>=1.28.0
+Pillow>=10.0.0
+google-generativeai>=0.3.0
+python-dotenv>=1.0.0
+
+# Optional dependencies for enhanced functionality
+requests>=2.31.0
+
+# Development dependencies (optional)
+# pytest>=7.0.0
+# black>=23.0.0
+# flake8>=6.0.0
