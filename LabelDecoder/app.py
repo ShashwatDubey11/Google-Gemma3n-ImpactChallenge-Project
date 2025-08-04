@@ -9,6 +9,10 @@ from PIL import Image
 import os
 import json
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Force reload environment variables BEFORE importing config
+load_dotenv(override=True)
 
 # Import our custom modules
 from database.db_manager import db_manager
@@ -36,10 +40,24 @@ def render_sidebar():
     with st.sidebar:
         st.header("⚙️ Configuration")
         
-        # Show API status (no manual input needed)
+        # Show API status with debug info
         if config.GEMINI_API_KEY:
             st.success("✅ Gemini AI Ready!")
             st.info(f"🤖 Using {config.GEMINI_MODEL} model")
+            
+            # Debug info - Show API key details
+            with st.expander("🔧 Debug Info"):
+                st.write(f"**Config API Key length:** {len(config.GEMINI_API_KEY)}")
+                st.write(f"**Config API Key preview:** {config.GEMINI_API_KEY[:10]}...{config.GEMINI_API_KEY[-4:]}")
+                
+                # Also check direct environment variable
+                direct_api_key = os.getenv('GEMINI_API_KEY')
+                if direct_api_key:
+                    st.write(f"**Direct env API Key length:** {len(direct_api_key)}")
+                    st.write(f"**Direct env API Key preview:** {direct_api_key[:10]}...{direct_api_key[-4:]}")
+                    st.write(f"**Keys match:** {'✅ Yes' if config.GEMINI_API_KEY == direct_api_key else '❌ No'}")
+                else:
+                    st.write("**Direct env API Key:** ❌ Not found")
         else:
             st.error("❌ Gemini API not configured")
             st.warning("Please check your .env file")
@@ -159,6 +177,16 @@ def analyze_image(uploaded_file):
     # Analyze with Gemini
     with st.spinner("🔍 Analyzing the image with AI... This may take a few moments."):
         try:
+            # DEBUG: Show exactly what API key we're using
+            st.write("🔧 **DEBUG INFO:**")
+            st.write(f"- Config API key length: {len(config.GEMINI_API_KEY)}")
+            st.write(f"- Config API key preview: {config.GEMINI_API_KEY[:15]}...{config.GEMINI_API_KEY[-6:]}")
+            
+            # Also check what the analyzer will receive
+            analyzer_key = config.GEMINI_API_KEY
+            st.write(f"- Analyzer will receive key length: {len(analyzer_key)}")
+            st.write(f"- Analyzer key preview: {analyzer_key[:15]}...{analyzer_key[-6:]}")
+            
             # Create Gemini analyzer with your API key from config
             analyzer = create_gemini_analyzer(config.GEMINI_API_KEY)
             
@@ -192,8 +220,13 @@ def analyze_image(uploaded_file):
             else:
                 st.error(f"❌ Analysis failed: {result['error']}")
                 
+                # DEBUG: Show the full error details
+                st.write("🔧 **FULL ERROR DETAILS:**")
+                st.code(str(result.get('error', 'No error details available')))
+                
         except Exception as e:
             st.error(f"❌ Error during analysis: {str(e)}")
+            st.exception(e)  # Show full error traceback for debugging
 
 def display_analysis_results(analysis_data):
     """Display the analysis results in a structured format."""
