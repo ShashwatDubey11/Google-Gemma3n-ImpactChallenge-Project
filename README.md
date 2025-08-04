@@ -221,21 +221,32 @@ The Google Gemini integration provides:
 
 ## 🚀 Deployment
 
-### Local Development
+### 🌐 **Live Production App**
+The app is currently deployed and accessible at:
+**[labeldecoder.streamlit.app](https://labeldecoder.streamlit.app)**
+
+### 📱 **Mobile Friendly**
+The app works perfectly on:
+- 📱 Mobile phones
+- 📟 Tablets  
+- 💻 Desktop computers
+- 📷 Camera functionality available on mobile devices
+
+### 🛠️ **For Developers - Local Development**
 ```bash
 cd LabelDecoder
 streamlit run app.py
 ```
 
-### Streamlit Cloud
-1. Push code to GitHub
+### ☁️ **Deploy Your Own Version on Streamlit Cloud**
+1. Fork this repository
 2. Connect to [Streamlit Cloud](https://streamlit.io/cloud)
 3. Set the main file path to `LabelDecoder/app.py`
 4. Add environment variables in Streamlit Cloud settings:
    - `GEMINI_API_KEY`: Your Google Gemini API key
 5. Deploy automatically
 
-### Docker (Optional)
+### 🐳 **Docker Deployment (Optional)**
 ```dockerfile
 FROM python:3.9-slim
 WORKDIR /app
@@ -296,9 +307,10 @@ Potential improvements you could add:
 
 ## 🔗 Links
 
-- **Live Demo**: [Deploy your own](https://streamlit.io/cloud)
-- **Google AI Studio**: [Get API Key](https://aistudio.google.com/app/apikey)
-- **Documentation**: [Streamlit Docs](https://docs.streamlit.io)
+- **🌐 Live App**: [labeldecoder.streamlit.app](https://labeldecoder.streamlit.app)
+- **📚 Documentation**: [Streamlit Docs](https://docs.streamlit.io)
+- **🔑 Get API Key**: [Google AI Studio](https://aistudio.google.com/app/apikey)
+- **☁️ Deploy Your Own**: [Streamlit Cloud](https://streamlit.io/cloud)
 
 ## 📄 License
 
@@ -312,10 +324,15 @@ Feel free to fork this project and submit pull requests for improvements!
 
 This project was created as part of the Google Gemma 3 Impact Challenge, demonstrating the power of AI in helping consumers make informed decisions about the products they consume.
 
+**🌐 Try it now:** [labeldecoder.streamlit.app](https://labeldecoder.streamlit.app)
+
 ---
 
 **Enjoy analyzing product labels with AI! 🎉**
 
 ## 📞 Contact
 
-For questions or support, please open an issue on this repository.
+For questions or support:
+- 🌐 Try the live app: [labeldecoder.streamlit.app](https://labeldecoder.streamlit.app)
+- 🐛 Report issues: Open an issue on this repository
+- 💡 Feature requests: Submit via GitHub issues
