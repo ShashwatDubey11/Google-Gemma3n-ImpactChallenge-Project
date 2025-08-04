@@ -2,6 +2,11 @@
 
 An intelligent Streamlit application that uses Google Gemini AI to analyze product labels and provide detailed insights about ingredients, health impacts, allergens, and nutritional information.
 
+## 🌐 **Try It Live!**
+**🚀 Access the app directly:** [labeldecoder.streamlit.app](https://labeldecoder.streamlit.app)
+
+*No installation required! Just upload a product label image and get instant AI-powered analysis.*
+
 ## 🌟 Features
 
 - **📸 Image Capture**: Take photos directly from your camera or upload image files
@@ -35,13 +40,21 @@ Google-Gemma3n-ImpactChallenge-Project/
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 🌐 **Option 1: Use the Live App (Recommended)**
+**Simply visit:** [labeldecoder.streamlit.app](https://labeldecoder.streamlit.app)
+- No installation required
+- No API key setup needed
+- Ready to use immediately
+- Upload any product label image and get instant analysis
 
+### 🛠️ **Option 2: Run Locally (For Developers)**
+
+#### Prerequisites
 - Python 3.8 or higher
 - Google Gemini API key ([Get one here](https://aistudio.google.com/app/apikey))
 - Internet connection for AI analysis
 
-### Installation
+#### Local Installation
 
 1. **Clone the repository**
    ```bash
@@ -94,22 +107,30 @@ streamlit run app.py
 
 ## 📖 How to Use
 
-### 1. **Get Your API Key**
+### 🌐 **Using the Live App** (Easiest Way)
+1. **Visit the app:** [labeldecoder.streamlit.app](https://labeldecoder.streamlit.app)
+2. **Upload an image:** Use either "Take Photo" or "Upload File" tabs
+3. **Analyze:** Click "Analyze This Label" button
+4. **View results:** Get detailed analysis including health ratings and recommendations
+
+### 🛠️ **For Local Development**
+
+#### 1. **Get Your API Key**
    - Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
    - Create a new API key
    - Copy the key to your `.env` file in the `LabelDecoder` directory
 
-### 2. **Upload an Image**
+#### 2. **Upload an Image**
    - Use the "Take Photo" tab to capture images directly
    - Or use "Upload File" to select images from your device
    - Supported formats: PNG, JPG, JPEG, GIF, BMP, WEBP
 
-### 3. **Analyze the Label**
+#### 3. **Analyze the Label**
    - Click the "Analyze This Label" button
    - Wait for AI processing (usually 10-30 seconds)
    - View detailed results including health ratings and recommendations
 
-### 4. **Review Results**
+#### 4. **Review Results**
    - Health rating (1-10 scale)
    - Key ingredients breakdown
    - Allergen warnings
