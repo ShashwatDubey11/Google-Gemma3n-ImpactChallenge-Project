@@ -15,8 +15,12 @@ class Config:
     """
     
     # Google Gemini API Configuration
-    GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
+    GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
     GEMINI_MODEL = 'gemini-1.5-flash'  # You can change this to other Gemini models
+    
+    # Streamlit App Configuration
+    PAGE_TITLE = "Label Decoder"
+    PAGE_ICON = "📷"
     
     # Database Configuration
     DATABASE_PATH = 'database/label_decoder.db'
@@ -25,10 +29,6 @@ class Config:
     UPLOAD_FOLDER = 'uploads'
     MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp'}
-    
-    # Streamlit Configuration
-    PAGE_TITLE = "Label Decoder"
-    PAGE_ICON = "📷"
     
     # Analysis Prompt for Gemini
     ANALYSIS_PROMPT = """
@@ -51,3 +51,7 @@ class Config:
 
 # Create an instance for easy importing
 config = Config()
+
+# Validate that API key is configured
+if not config.GEMINI_API_KEY:
+    raise ValueError("GEMINI_API_KEY not found in environment variables. Please add it to your .env file.")

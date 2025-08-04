@@ -1,0 +1,39 @@
+# Environment variables - Keep your API key secure!
+.env
+
+# Database files
+database/label_decoder.db
+database/*.db
+
+# Uploaded images
+uploads/*
+!uploads/.gitkeep
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Temporary files
+*.tmp
+*.temp

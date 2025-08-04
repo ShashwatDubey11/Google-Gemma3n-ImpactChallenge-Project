@@ -36,18 +36,13 @@ def render_sidebar():
     with st.sidebar:
         st.header("⚙️ Configuration")
         
-        # API Key input
-        api_key = st.text_input(
-            "Google Gemini API Key",
-            type="password",
-            help="Enter your Google Gemini API key. Get one from: https://aistudio.google.com/app/apikey"
-        )
-        
-        if api_key:
-            st.session_state.gemini_api_key = api_key
-            st.success("✅ API Key configured!")
+        # Show API status (no manual input needed)
+        if config.GEMINI_API_KEY:
+            st.success("✅ Gemini AI Ready!")
+            st.info(f"🤖 Using {config.GEMINI_MODEL} model")
         else:
-            st.warning("⚠️ Please enter your Gemini API key to use the analyzer.")
+            st.error("❌ Gemini API not configured")
+            st.warning("Please check your .env file")
         
         st.divider()
         
@@ -139,8 +134,8 @@ def process_uploaded_image(uploaded_file):
 
 def analyze_image(uploaded_file):
     """Analyze the uploaded image using Gemini AI."""
-    if 'gemini_api_key' not in st.session_state:
-        st.error("❌ Please configure your Gemini API key in the sidebar first.")
+    if not config.GEMINI_API_KEY:
+        st.error("❌ Gemini API not configured. Please check your .env file.")
         return
     
     # Save the image
@@ -164,11 +159,11 @@ def analyze_image(uploaded_file):
     # Analyze with Gemini
     with st.spinner("🔍 Analyzing the image with AI... This may take a few moments."):
         try:
-            # Create Gemini analyzer
-            analyzer = create_gemini_analyzer(st.session_state.gemini_api_key)
+            # Create Gemini analyzer with your API key from config
+            analyzer = create_gemini_analyzer(config.GEMINI_API_KEY)
             
             if not analyzer.is_configured():
-                st.error("❌ Failed to configure Gemini API. Please check your API key.")
+                st.error("❌ Failed to configure Gemini API. Please check your API key in .env file.")
                 return
             
             # Perform analysis
